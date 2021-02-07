@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Service.Blog;
+using Service.Blog.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +34,7 @@ namespace Blog
             //services.AddScoped   
             //只會在站台啟動時注入一個新的
             //services.AddSingleton
+            services.AddScoped<IBlogArticleService, BlogArticleService>();
             services.AddScoped<BlogDbContext>();
 
             services.AddControllers();

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
+using Service.Blog.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,44 @@ namespace Blog.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-
-        public BlogController()
+        private readonly IBlogArticleService _blogArticleService;
+        public BlogController(IBlogArticleService blogArticleService)
         {
+            _blogArticleService = blogArticleService;
         }
 
-        [HttpGet]
-        public IEnumerable<BlogArticle> Get()
+        /// <summary>
+        /// 取得文章列表
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet("GetArticleList")]
+        public ActionResult Get(int page, int pageSize)
         {
-            return null;
+            return Ok(_blogArticleService.GetArticleList(page, pageSize));
+        }
+
+        /// <summary>
+        /// 取得文章html內容
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("GetArticle")]
+        public ActionResult Get(int id)
+        {
+            return Ok(_blogArticleService.GetArticleDetail(id));
+        }
+
+        /// <summary>
+        /// 同步資料進sqlite
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut]
+        public ActionResult Put()
+        {
+            _blogArticleService.SynchronizeArticle();
+            return Ok();
         }
     }
 }
