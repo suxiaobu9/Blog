@@ -1,3 +1,4 @@
+using DbLogic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +26,14 @@ namespace Blog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //每次Call Method都注入一個新的
+            //services.AddTransient
+            //每個LifeCycle注入一個新的
+            //services.AddScoped   
+            //只會在站台啟動時注入一個新的
+            //services.AddSingleton
+            services.AddScoped<BlogDbContext>();
+
             services.AddControllers();
         }
 

@@ -5,5 +5,11 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DbLogic\DbLogic.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\Service\Service.csproj" />
+  </ItemGroup>
+
 
 </Project>

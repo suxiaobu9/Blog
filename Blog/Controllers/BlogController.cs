@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DbLogic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,15 @@ namespace Blog.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+
+        public BlogController()
         {
-            return string.Empty;
+        }
+
+        [HttpGet]
+        public IEnumerable<BlogArticle> Get()
+        {
+            return null;
         }
     }
 }
