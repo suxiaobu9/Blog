@@ -26,6 +26,21 @@ export default {
           header:true,
           title:document.title,
           hiddenOnCollapse:true
+        },
+        {
+          href:'/SomethingWrong',
+          title:'技術筆記 Technical notes',
+          icon:'fas fa-stethoscope'
+        },
+        {
+          href:'/Recipt',
+          title:'食譜 Recipt',
+          icon:'fas fa-torah'
+        },
+        {
+          href:'/Interview',
+          title:'面試筆記 Interview',
+          icon:'fas fa-pray'
         }
       ],
       collapsed:false,
@@ -56,10 +71,8 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
-.v-sidebar-menu .vsm--toggle-btn::after {
-  font-family: 'Font Awesome 5 Pro';
-  contain: '\f337';
 
+.v-sidebar-menu .vsm--title {
+  color: #ffa600;
 }
 </style>
