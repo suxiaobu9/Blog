@@ -1,4 +1,4 @@
-# Jquery 陣列操作：$map()、$.grep()、$.each()
+# jQuery 陣列操作：$map()、$.grep()、$.each()
 
 ### 先來點假資料
 
