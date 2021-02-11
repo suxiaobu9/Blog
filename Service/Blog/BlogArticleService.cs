@@ -1,5 +1,4 @@
 ﻿using DbLogic;
-using Markdig;
 using Microsoft.AspNetCore.Hosting;
 using Model;
 using Service.Blog.Interface;
@@ -32,9 +31,7 @@ namespace Service.Blog
         {
             var blogArtical = _blogDbContext.BlogArticles.FirstOrDefault(x => x.Id == id);
 
-            var mdInfo = File.ReadAllText(Path.Combine(_hostingEnvironment.ContentRootPath, blogArtical.FilePath));
-
-            return Markdown.ToHtml(mdInfo);
+            return File.ReadAllText(Path.Combine(_hostingEnvironment.ContentRootPath, blogArtical.FilePath));
         }
 
         /// <summary>
@@ -46,6 +43,7 @@ namespace Service.Blog
         public List<BlogArticle> GetArticleList(int page, int pageSize)
         {
             return _blogDbContext.BlogArticles
+                    .Where(x=>x.IsShow)
                     .OrderByDescending(x => x.CreateTime)
                     .Paging(page, pageSize)
                     .ToList();

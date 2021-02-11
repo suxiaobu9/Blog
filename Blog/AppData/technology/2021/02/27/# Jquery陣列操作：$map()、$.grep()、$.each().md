@@ -1,6 +1,6 @@
 # Jquery 陣列操作：$map()、$.grep()、$.each()
 
-## 先來點假資料
+### 先來點假資料
 
 ```js
 function PersonalInfo(name, age, height) {
@@ -19,7 +19,7 @@ var personalInfos = [
 ];
 ```
 
-## $.map() - 取得特定欄位
+### $.map() - 取得特定欄位
 
 ```js
 var nameList = $.map(personalInfos, function (item, index) {
@@ -29,7 +29,7 @@ var nameList = $.map(personalInfos, function (item, index) {
 console.log(nameList); //["Alma", "Beth", "Celia", "Daryl", "Eda", "Faye"]
 ```
 
-## $.grep - 取得特定資料
+### $.grep - 取得特定資料
 
 ```js
 var adult = $.grep(personalInfos, function (item, index) {
@@ -44,7 +44,7 @@ console.log(adult);
  */
 ```
 
-## $.each() - 就你參數最特別
+### $.each() - 就你參數最特別
 
 ```js
 $.each(personalInfos, function (index, item) {
@@ -52,7 +52,7 @@ $.each(personalInfos, function (index, item) {
 });
 ```
 
-## 參考資料
+### 參考資料
 
 - [jQuery 的陣列操作：$.map() 與 $.grep()](https://cythilya.github.io/2016/03/13/jquery-map-grep/)
 - [jQuery.grep() | jQuery API Documentation](https://api.jquery.com/jquery.grep/)

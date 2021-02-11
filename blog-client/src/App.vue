@@ -25,6 +25,11 @@ export default {
     return{
       menu:[
         {
+          header:true,
+          title:' ',
+          hiddenOnCollapse:true
+        },
+        {
           href:'/',
           title:document.title,
           icon:'fas fa-home'
@@ -102,6 +107,7 @@ background-color: #ffa600;
 }
 
 #RouterView{
+  margin: 50px 100px ;
   padding-left: 350px;
   transition: 0.3s ease;
 }

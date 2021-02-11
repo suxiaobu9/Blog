@@ -18,6 +18,8 @@ namespace Blog
 {
     public class Startup
     {
+        readonly string CorsPolicy = "CorsPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -38,6 +40,14 @@ namespace Blog
             services.AddScoped<BlogDbContext>();
 
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicy, policy =>
+                {
+                    policy.WithOrigins(@"http://localhost:8080", @"https://suxiaobu9.github.io");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,9 +62,12 @@ namespace Blog
 
             app.UseAuthorization();
 
+            app.UseCors();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers()
+                        .RequireCors(CorsPolicy);
             });
         }
     }

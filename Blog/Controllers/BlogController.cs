@@ -29,7 +29,14 @@ namespace Blog.Controllers
         [HttpGet("GetArticleList")]
         public ActionResult Get(int page, int pageSize)
         {
-            return Ok(_blogArticleService.GetArticleList(page, pageSize));
+            var result = _blogArticleService.GetArticleList(page, pageSize)
+                            .Select(x => new
+                            {
+                                x.Id,
+                                x.Title,
+                                x.CreateTime
+                            });
+            return Ok(result);
         }
 
         /// <summary>

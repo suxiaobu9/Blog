@@ -1,5 +1,30 @@
 <template>
-    <div>
-        aaaaaaaaaaaaaaaaaaaaaaaa
-    </div>
+<div v-html="html">
+</div>
 </template>
+
+<script>
+export default {
+    name:'HomePage',
+    data(){
+        return{
+            html:''
+        }
+    },
+    mounted(){
+        // this.$http.get(`https://bu9note.azurewebsites.net/api/blog/getarticlelist?page=1&pagesize=20`)
+        //     .then((result) => {
+        //       this.html = result;  
+        //     }).catch((err) => {
+        //         this.html = err;
+        //     });
+
+              this.$http.get(`https://bu9note.azurewebsites.net/api/blog/getarticle?id=1`)
+            .then((result) => {
+              this.html = result.data;  
+            }).catch((err) => {
+                this.html = err;
+            });
+    }
+}
+</script>
