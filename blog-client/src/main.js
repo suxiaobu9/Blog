@@ -5,6 +5,8 @@ import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import VueSidebarMenu from "vue-sidebar-menu";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import MarkdownItVue from "markdown-it-vue";
+import "markdown-it-vue/dist/markdown-it-vue.css";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -21,6 +23,7 @@ Vue.use(IconsPlugin);
 // vue-sidebar
 Vue.use(VueSidebarMenu);
 Vue.use(VueAxios, axios);
+Vue.use(MarkdownItVue);
 
 new Vue({
   router,

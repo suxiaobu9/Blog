@@ -1,5 +1,6 @@
 <template>
-<div v-html="html">
+<div>
+    <markdown-it-vue class="md-body" :content="html" />
 </div>
 </template>
 
