@@ -13,6 +13,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
+import "./Content/Site.css";
 
 Vue.config.productionTip = false;
 

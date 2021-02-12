@@ -1,10 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import HomePage from "../components/HomePage.vue";
-import TechnicalNote from "../components/TechnicalNote.vue";
-import Recipe from "../components/Recipe.vue";
-import Interview from "../components/Interview.vue";
+import HomePage from "../router/HomePage.vue";
+import TechnicalNote from "../router/TechnicalNote.vue";
+import Recipe from "../router/Recipe.vue";
+import Interview from "../router/Interview.vue";
 
 Vue.use(VueRouter);
 

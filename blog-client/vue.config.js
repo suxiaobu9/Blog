@@ -5,4 +5,12 @@ module.exports = {
       return args;
     });
   },
+  configureWebpack: {
+    optimization: {
+      splitChunks: {
+        minSize: 10000,
+        maxSize: 250000,
+      },
+    },
+  },
 };

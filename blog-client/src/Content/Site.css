@@ -1,0 +1,52 @@
+body {
+  background-color: #eee;
+}
+
+.v-sidebar-menu .vsm--title {
+  color: #ffa600;
+}
+
+.v-sidebar-menu .vsm--link.vsm--link_active {
+  color: #ffa600;
+  box-shadow: 3px 0px 0px 0px #ffa600 inset !important;
+  -webkit-box-shadow: 3px 0px 0px 0px #2a2a2e inset !important;
+}
+
+.v-sidebar-menu .vsm--mobile-bg {
+  background-color: #2a2a2e !important;
+}
+
+.v-sidebar-menu.vsm_collapsed .vsm--link_level-1.vsm--link_hover .vsm--icon,
+.v-sidebar-menu.vsm_collapsed .vsm--link_level-1:hover .vsm--icon {
+  background-color: #ffa600 !important;
+}
+
+#RouterView {
+  transition: 0.3s ease;
+}
+
+#RouterView.collapsed {
+  padding-left: 50px;
+}
+#RouterView.onmobile {
+  padding-left: 50px;
+}
+
+article {
+  padding: 30px;
+  margin-top: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+article > .tag {
+  background-color: #eee;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+
+article > .detail-link {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: black;
+}
