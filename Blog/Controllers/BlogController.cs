@@ -34,7 +34,7 @@ namespace Blog.Controllers
                             {
                                 x.Id,
                                 x.Title,
-                                x.CreateTime
+                                CreateTime = x.CreateTime.ToString("yyyy/MM/dd")
                             });
             return Ok(result);
         }
