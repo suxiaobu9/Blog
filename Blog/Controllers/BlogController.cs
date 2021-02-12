@@ -27,9 +27,11 @@ namespace Blog.Controllers
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("GetArticleList")]
-        public ActionResult Get(int page, int pageSize)
+        public ActionResult Get(ArticleType type, int page, int pageSize)
         {
-            var result = _blogArticleService.GetArticleList(page, pageSize)
+            var result = (type == ArticleType.All ?
+                        _blogArticleService.GetArticleList(page, pageSize) :
+                        _blogArticleService.GetArticleList(type, page, pageSize))
                             .Select(x => new
                             {
                                 x.Id,
