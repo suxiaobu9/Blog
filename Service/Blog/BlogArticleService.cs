@@ -56,10 +56,10 @@ namespace Service.Blog
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public List<BlogArticle> GetArticleList(string type, int page, int pageSize)
+        public List<BlogArticle> GetArticleList(ArticleType type, int page, int pageSize)
         {
             return _blogDbContext.BlogArticles
-                    .Where(x => x.Type == type)
+                    .Where(x => x.Type == type.ToString())
                     .OrderByDescending(x => x.CreateTime)
                     .Paging(page, pageSize)
                     .ToList();

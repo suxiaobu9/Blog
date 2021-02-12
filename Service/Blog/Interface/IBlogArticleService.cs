@@ -29,7 +29,7 @@ namespace Service.Blog.Interface
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public List<BlogArticle> GetArticleList(string type, int page, int pageSize);
+        public List<BlogArticle> GetArticleList(ArticleType type, int page, int pageSize);
 
         /// <summary>
         /// 同步資料進sqlite
