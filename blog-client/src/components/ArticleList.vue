@@ -1,9 +1,11 @@
 <template>
   <div>
     <article v-for="simpleArticle in articleList" :key="simpleArticle.id">
-      <router-link class="detail-link" to="/SomethingWrong">{{
-        simpleArticle.title
-      }}</router-link>
+      <router-link
+        class="detail-link"
+        :to="{ name: 'ArticleDisplay', params: { id: simpleArticle.id } }"
+        >{{ simpleArticle.title }}</router-link
+      >
       <br />
       <span class="tag">{{ simpleArticle.createTime }}</span>
     </article>

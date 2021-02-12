@@ -5,6 +5,7 @@ import HomePage from "../router/HomePage.vue";
 import TechnicalNote from "../router/TechnicalNote.vue";
 import Recipe from "../router/Recipe.vue";
 import Interview from "../router/Interview.vue";
+import ArticleDisplay from "../components/ArticleDisplay";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,11 @@ const routes = [
     path: "/Interview",
     name: "Interview",
     component: Interview,
+  },
+  {
+    path: "/Article/:id",
+    name: "ArticleDisplay",
+    component: ArticleDisplay,
   },
 ];
 
