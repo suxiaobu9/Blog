@@ -1,6 +1,7 @@
 ﻿using DbLogic;
 using Microsoft.AspNetCore.Hosting;
 using Model;
+using Model.Blog;
 using Service.Blog.Interface;
 using System;
 using System.Collections.Generic;
@@ -27,11 +28,16 @@ namespace Service.Blog
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public string GetArticleDetail(int id)
+        public ArticleModel GetArticleDetail(int id)
         {
             var blogArtical = _blogDbContext.BlogArticles.FirstOrDefault(x => x.Id == id);
 
-            return File.ReadAllText(Path.Combine(_hostingEnvironment.ContentRootPath, blogArtical.FilePath));
+            return new ArticleModel
+            {
+                Title = blogArtical.Title,
+                CreateTime = blogArtical.CreateTime.ToString("yyyy/MM/dd"),
+                MdContent = File.ReadAllText(Path.Combine(_hostingEnvironment.ContentRootPath, blogArtical.FilePath))
+            };
         }
 
         /// <summary>
@@ -43,7 +49,7 @@ namespace Service.Blog
         public List<BlogArticle> GetArticleList(int page, int pageSize)
         {
             return _blogDbContext.BlogArticles
-                    .Where(x=>x.IsShow)
+                    .Where(x => x.IsShow)
                     .OrderByDescending(x => x.CreateTime)
                     .Paging(page, pageSize)
                     .ToList();

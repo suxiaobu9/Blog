@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
+using Model.Blog;
 using Service.Blog.Interface;
 using System;
 using System.Collections.Generic;
@@ -32,10 +33,10 @@ namespace Blog.Controllers
             var result = (type == ArticleType.All ?
                         _blogArticleService.GetArticleList(page, pageSize) :
                         _blogArticleService.GetArticleList(type, page, pageSize))
-                            .Select(x => new
+                            .Select(x => new SimpleArticleModel
                             {
-                                x.Id,
-                                x.Title,
+                                Id = x.Id,
+                                Title = x.Title,
                                 CreateTime = x.CreateTime.ToString("yyyy/MM/dd")
                             });
             return Ok(result);
@@ -49,6 +50,7 @@ namespace Blog.Controllers
         [HttpGet("GetArticle")]
         public ActionResult Get(int id)
         {
+
             return Ok(_blogArticleService.GetArticleDetail(id));
         }
 

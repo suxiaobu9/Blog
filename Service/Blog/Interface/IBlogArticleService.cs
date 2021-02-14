@@ -1,4 +1,5 @@
 ﻿using Model;
+using Model.Blog;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Service.Blog.Interface
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public string GetArticleDetail(int id);
+        public ArticleModel GetArticleDetail(int id);
 
         /// <summary>
         /// 取得文章列表
