@@ -1,6 +1,11 @@
 <template>
   <div>
-    <article v-for="simpleArticle in articleList" :key="simpleArticle.id">
+    <div v-if="loading">Loading...</div>
+    <article
+      v-else
+      v-for="simpleArticle in articleList"
+      :key="simpleArticle.id"
+    >
       <router-link
         class="detail-link"
         :to="{ name: 'ArticleDisplay', params: { id: simpleArticle.id } }"
@@ -17,6 +22,7 @@ export default {
   name: "ArticleList",
   data() {
     return {
+      loading: true,
       articleList: [],
     };
   },
@@ -33,10 +39,12 @@ export default {
       )
       .then((result) => {
         this.articleList = result.data;
-        console.log(this.articleList);
       })
       .catch((err) => {
-        this.html = err;
+        this.$toast.error(err);
+      })
+      .then(() => {
+        this.loading = false;
       });
   },
 };

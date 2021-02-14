@@ -35,6 +35,7 @@ body {
 article {
   padding: 30px;
   margin-top: 30px;
+  margin-bottom: 30px;
   background-color: #fff;
   border-radius: 10px;
 }
@@ -49,4 +50,11 @@ article > .detail-link {
   font-size: 2.5rem;
   font-weight: 500;
   color: black;
+}
+
+.view-footer {
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  font-size: 15px;
 }

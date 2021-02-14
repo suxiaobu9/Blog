@@ -18,6 +18,12 @@
       :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]"
     >
       <router-view class="body" />
+      <hr />
+      <div class="view-footer">
+        聯絡我 : bu9noteblog@gmail.com
+        <br />
+        Bu9 © 2021.
+      </div>
     </div>
   </div>
 </template>

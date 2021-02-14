@@ -1,6 +1,11 @@
 <template>
   <div>
-    <markdown-it-vue class="md-body" :content="mdContent" />
+    <article>
+      <h1>{{ articleDisplay.title }}</h1>
+      <span class="tag">{{ articleDisplay.createTime }}</span>
+      <hr />
+      <markdown-it-vue class="md-body" :content="articleDisplay.mdContent" />
+    </article>
   </div>
 </template>
 
@@ -9,7 +14,11 @@ export default {
   name: "ArticleDisplay",
   data() {
     return {
-      mdContent: "",
+      articleDisplay: {
+        title: "",
+        createTime: "",
+        mdContent: "",
+      },
     };
   },
   mounted() {
@@ -18,10 +27,10 @@ export default {
         `https://bu9note.azurewebsites.net/api/blog/getarticle?id=${this.$route.params.id}`
       )
       .then((result) => {
-        this.mdContent = result.data;
+        this.articleDisplay = result.data;
       })
       .catch((err) => {
-        this.mdContent = err;
+        this.$toast.error(err);
       });
   },
 };

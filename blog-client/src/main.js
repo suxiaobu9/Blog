@@ -6,14 +6,16 @@ import VueSidebarMenu from "vue-sidebar-menu";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import MarkdownItVue from "markdown-it-vue";
-import "markdown-it-vue/dist/markdown-it-vue.css";
+import Toast from "vue-toastification";
 
+import "markdown-it-vue/dist/markdown-it-vue.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 import "./Content/Site.css";
+import "vue-toastification/dist/index.css";
 
 Vue.config.productionTip = false;
 
@@ -25,6 +27,11 @@ Vue.use(IconsPlugin);
 Vue.use(VueSidebarMenu);
 Vue.use(VueAxios, axios);
 Vue.use(MarkdownItVue);
+Vue.use(Toast, {
+  transition: "Vue-Toastification__bounce",
+  maxToasts: 20,
+  newestOnTop: true,
+});
 
 new Vue({
   router,
