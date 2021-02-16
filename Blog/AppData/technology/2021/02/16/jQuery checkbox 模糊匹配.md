@@ -4,15 +4,14 @@
 $("[name=checkbox3]").click();
 ```
 
-[ ] checkbox1
-<input type=checkbox> checkbox1<br>
-<input type=checkbox> checkbox2<br>
-<input type=checkbox checked> checkbox3<br>
-<input type=checkbox> checkbox4<br>
-<input type=checkbox> checkbox1test<br>
-<input type=checkbox> checkbox2test<br>
-<input type=checkbox> checkbox3test<br>
-<input type=checkbox> checkbox4test<br>
+- [ ] checkbox1
+- [ ] checkbox2
+- [x] checkbox3
+- [ ] checkbox4
+- [ ] checkbox1test
+- [ ] checkbox2test
+- [ ] checkbox3test
+- [ ] checkbox4test
 
 ## 2.[att*=value] 模糊匹配
 
@@ -20,14 +19,14 @@ $("[name=checkbox3]").click();
 $("[name*=x1]").click();
 ```
 
-<input type=checkbox checked> checkbox1<br>
-<input type=checkbox> checkbox2<br>
-<input type=checkbox> checkbox3<br>
-<input type=checkbox> checkbox4<br>
-<input type=checkbox checked> checkbox1test<br>
-<input type=checkbox> checkbox2test<br>
-<input type=checkbox> checkbox3test<br>
-<input type=checkbox> checkbox4test<br>
+- [x] checkbox1
+- [ ] checkbox2
+- [ ] checkbox3
+- [ ] checkbox4
+- [x] checkbox1test
+- [ ] checkbox2test
+- [ ] checkbox3test
+- [ ] checkbox4test
 
 ## 3.[att!=value] 不能是這個值
 
@@ -35,14 +34,14 @@ $("[name*=x1]").click();
 $("[name!=checkbox3]").click();
 ```
 
-<input type=checkbox checked> checkbox1<br>
-<input type=checkbox checked> checkbox2<br>
-<input type=checkbox> checkbox3<br>
-<input type=checkbox checked> checkbox4<br>
-<input type=checkbox checked> checkbox1test<br>
-<input type=checkbox checked> checkbox2test<br>
-<input type=checkbox checked> checkbox3test<br>
-<input type=checkbox checked> checkbox4test<br>
+- [x] checkbox1
+- [x] checkbox2
+- [ ] checkbox3
+- [x] checkbox4
+- [x] checkbox1test
+- [x] checkbox2test
+- [x] checkbox3test
+- [x] checkbox4test
 
 ## 4.[att$=value] 結尾是這個值
 
@@ -50,14 +49,14 @@ $("[name!=checkbox3]").click();
 $("[name$=test]").click();
 ```
 
-<input type=checkbox> checkbox1<br>
-<input type=checkbox> checkbox2<br>
-<input type=checkbox> checkbox3<br>
-<input type=checkbox> checkbox4<br>
-<input type=checkbox checked> checkbox1test<br>
-<input type=checkbox checked> checkbox2test<br>
-<input type=checkbox checked> checkbox3test<br>
-<input type=checkbox checked> checkbox4test<br>
+- [ ] checkbox1
+- [ ] checkbox2
+- [ ] checkbox3
+- [ ] checkbox4
+- [x] checkbox1test
+- [x] checkbox2test
+- [x] checkbox3test
+- [x] checkbox4test
 
 ## 5.[att^=value] 開頭是這個值
 
@@ -65,11 +64,11 @@ $("[name$=test]").click();
 $("[name^=checkbox]").click();
 ```
 
-<input type=checkbox checked> checkbox1<br>
-<input type=checkbox checked> checkbox2<br>
-<input type=checkbox checked> checkbox3<br>
-<input type=checkbox checked> checkbox4<br>
-<input type=checkbox checked> checkbox1test<br>
-<input type=checkbox checked> checkbox2test<br>
-<input type=checkbox checked> checkbox3test<br>
-<input type=checkbox checked> checkbox4test<br>
+- [x] checkbox1
+- [x] checkbox2
+- [x] checkbox3
+- [x] checkbox4
+- [x] checkbox1test
+- [x] checkbox2test
+- [x] checkbox3test
+- [x] checkbox4test
