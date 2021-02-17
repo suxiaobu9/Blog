@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]">
     <sidebar-menu
       :menu="menu"
-      :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]"
+      :collapsed="collapsed"
       :show-one-chile="true"
       @toggle-collapse="onToggleCollapse"
       @item-click="onItemClick"
@@ -64,7 +64,7 @@ export default {
     };
   },
   mounted() {
-    this.onResize;
+    this.onResize();
     window.addEventListener("resize", this.onResize);
   },
   methods: {
@@ -79,7 +79,7 @@ export default {
       console.log(node);
     },
     onResize() {
-      console.log(process.env.BASE_URL);
+      console.log(window.innerWidth);
       this.isOnMobile = this.collapsed = window.innerWidth <= 767;
     },
   },
