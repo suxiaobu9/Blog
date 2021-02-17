@@ -2,7 +2,7 @@
   <div id="app">
     <sidebar-menu
       :menu="menu"
-      :collapsed="collapsed"
+      :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]"
       :show-one-chile="true"
       @toggle-collapse="onToggleCollapse"
       @item-click="onItemClick"
