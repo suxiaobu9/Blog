@@ -14,7 +14,6 @@
     />
     <div
       id="RouterView"
-      class="container"
       :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]"
     >
       <router-view class="body" />

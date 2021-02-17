@@ -22,14 +22,17 @@ body {
 }
 
 #RouterView {
+  margin-left: 350px;
+  padding-left: 10%;
+  padding-right: 10%;
   transition: 0.3s ease;
 }
 
 #RouterView.collapsed {
-  padding-left: 50px;
+  margin-left: 60px;
 }
 #RouterView.onmobile {
-  padding-left: 50px;
+  margin-left: 60px;
 }
 
 article {
