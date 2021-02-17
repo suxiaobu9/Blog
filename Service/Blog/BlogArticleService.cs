@@ -65,7 +65,7 @@ namespace Service.Blog
         public List<BlogArticle> GetArticleList(ArticleType type, int page, int pageSize)
         {
             return _blogDbContext.BlogArticles
-                    .Where(x => x.Type == type.ToString())
+                    .Where(x => x.Type == type.ToString().ToLower())
                     .OrderByDescending(x => x.CreateTime)
                     .Paging(page, pageSize)
                     .ToList();
