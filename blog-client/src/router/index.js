@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import HomePage from "../router/HomePage.vue";
-import TechnicalNote from "../router/TechnicalNote.vue";
 import Recipe from "../router/Recipe.vue";
 import Interview from "../router/Interview.vue";
 import ArticleDisplay from "../components/ArticleDisplay";
@@ -14,11 +13,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: HomePage,
-  },
-  {
-    path: "/SomethingWrong",
-    name: "TechnicalNote",
-    component: TechnicalNote,
   },
   {
     path: "/Recipe",

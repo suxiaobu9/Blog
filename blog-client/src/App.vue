@@ -44,11 +44,6 @@ export default {
           icon: "fas fa-home",
         },
         {
-          href: "/SomethingWrong",
-          title: "技術筆記 Technical notes",
-          icon: "fas fa-stethoscope",
-        },
-        {
           href: "/Recipe",
           title: "食譜 Recipe",
           icon: "fas fa-torah",

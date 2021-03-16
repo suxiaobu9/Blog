@@ -10,7 +10,7 @@ export default {
   name: "HomePage",
   data() {
     return {
-      articleType: "all",
+      articleType: "technology",
     };
   },
   components: {
