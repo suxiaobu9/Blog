@@ -1,18 +1,14 @@
 using DbLogic;
+using DbLogic.Blog;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Service.Blog;
 using Service.Blog.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Blog
 {
@@ -37,7 +33,9 @@ namespace Blog
             //只會在站台啟動時注入一個新的
             //services.AddSingleton
             services.AddScoped<IBlogArticleService, BlogArticleService>();
-            services.AddScoped<BlogDbContext>();
+            services.AddScoped<IDataAccess, DataAccess>();
+            services.AddTransient<IBlogDAL, BlogDAL>();
+            services.AddTransient<IDbConnection>(db => new SqlConnection(Configuration.GetConnectionString("DefaultConnectionString")));
 
             services.AddControllers();
 

@@ -1,4 +1,5 @@
 ﻿using DbLogic;
+using DbLogic.Blog;
 using Microsoft.AspNetCore.Hosting;
 using Model;
 using Model.Blog;
@@ -13,13 +14,13 @@ namespace Service.Blog
 {
     public class BlogArticleService : IBlogArticleService
     {
-        private readonly BlogDbContext _blogDbContext;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IBlogDAL _blogDAL;
 
-        public BlogArticleService(BlogDbContext blogDbContext,
+        public BlogArticleService(IBlogDAL blogDAL,
             IHostingEnvironment hostingEnvironment)
         {
-            _blogDbContext = blogDbContext;
+            _blogDAL = blogDAL;
             _hostingEnvironment = hostingEnvironment;
         }
 
@@ -30,7 +31,7 @@ namespace Service.Blog
         /// <returns></returns>
         public ArticleModel GetArticleDetail(int id)
         {
-            var blogArtical = _blogDbContext.BlogArticles.FirstOrDefault(x => x.Id == id);
+            var blogArtical = _blogDAL.GetFirstArticle(id);
 
             return new ArticleModel
             {
@@ -48,11 +49,8 @@ namespace Service.Blog
         /// <returns></returns>
         public List<BlogArticle> GetArticleList(int page, int pageSize)
         {
-            return _blogDbContext.BlogArticles
-                    .Where(x => x.IsShow)
-                    .OrderByDescending(x => x.CreateTime)
-                    .Paging(page, pageSize)
-                    .ToList();
+            var result = _blogDAL.GetArticleList(page, pageSize).ToList();
+            return result;
         }
 
         /// <summary>
@@ -64,11 +62,8 @@ namespace Service.Blog
         /// <returns></returns>
         public List<BlogArticle> GetArticleList(ArticleType type, int page, int pageSize)
         {
-            return _blogDbContext.BlogArticles
-                    .Where(x => x.Type == type.ToString().ToLower())
-                    .OrderByDescending(x => x.CreateTime)
-                    .Paging(page, pageSize)
-                    .ToList();
+            var result = _blogDAL.GetArticleList(type, page, pageSize).ToList();
+            return result;
         }
 
         /// <summary>
@@ -76,34 +71,34 @@ namespace Service.Blog
         /// </summary>
         public void SynchronizeArticle()
         {
-            var contentRootPath = _hostingEnvironment.ContentRootPath;
-            var dirPath = Path.Combine(contentRootPath, "AppData");
-            var allFiles = GetAllFiles(dirPath);
+            //var contentRootPath = _hostingEnvironment.ContentRootPath;
+            //var dirPath = Path.Combine(contentRootPath, "AppData");
+            //var allFiles = GetAllFiles(dirPath);
 
-            var allDbArticals = _blogDbContext.BlogArticles.ToList();
+            //var allDbArticals = _blogDbContext.BlogArticles.ToList();
 
-            foreach (var filePath in allFiles)
-            {
-                var title = Path.GetFileNameWithoutExtension(filePath);
-                if (title.StartsWith("#"))
-                    title = title.Substring(1, title.Length - 1).Trim();
+            //foreach (var filePath in allFiles)
+            //{
+            //    var title = Path.GetFileNameWithoutExtension(filePath);
+            //    if (title.StartsWith("#"))
+            //        title = title.Substring(1, title.Length - 1).Trim();
 
-                if (allDbArticals.Any(x => x.Title == title))
-                    continue;
+            //    if (allDbArticals.Any(x => x.Title == title))
+            //        continue;
 
-                var relativePath = filePath.Replace(contentRootPath, "").TrimStart('\\');
-                var pathSplit = relativePath.Split('\\');
-                _blogDbContext.BlogArticles.Add(new BlogArticle
-                {
-                    Title = title,
-                    Type = pathSplit[1],
-                    FilePath = relativePath,
-                    CreateTime = new DateTime(Convert.ToInt32(pathSplit[2]), Convert.ToInt32(pathSplit[3]), Convert.ToInt32(pathSplit[4])),
-                    IsShow = true
-                });
-            }
+            //    var relativePath = filePath.Replace(contentRootPath, "").TrimStart('\\');
+            //    var pathSplit = relativePath.Split('\\');
+            //    _blogDbContext.BlogArticles.Add(new BlogArticle
+            //    {
+            //        Title = title,
+            //        Type = pathSplit[1],
+            //        FilePath = relativePath,
+            //        CreateTime = new DateTime(Convert.ToInt32(pathSplit[2]), Convert.ToInt32(pathSplit[3]), Convert.ToInt32(pathSplit[4])),
+            //        IsShow = true
+            //    });
+            //}
 
-            _blogDbContext.SaveChanges();
+            //_blogDbContext.SaveChanges();
 
         }
 
