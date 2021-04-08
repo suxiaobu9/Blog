@@ -3,7 +3,7 @@
     "mssql1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/bu9notedb/databases/Blog",
       "type": "mssql.azure",
-      "connectionId": "DefaultConnectionString",
+      "connectionId": "Default",
       "secretStore": "AzureAppSettings"
     }
   }
