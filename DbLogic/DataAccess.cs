@@ -1,19 +1,23 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Options;
+using Model.Appsettings;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace DbLogic
 {
     public class DataAccess : IDataAccess
     {
-        public DataAccess(IDbConnection defaultConn)
+        public DataAccess(IOptions<ConnectionConfig> connectionConfig)
         {
-            _defaultConn = defaultConn;
+            _connectionConfig = connectionConfig.Value;
         }
 
-        private readonly IDbConnection _defaultConn;
+        private readonly ConnectionConfig _connectionConfig;
+
 
         /// <summary>
         /// 取得一筆
@@ -24,10 +28,8 @@ namespace DbLogic
         /// <returns></returns>
         public T QueryFrist<T>(string sql, IDictionary<string, object> parameter)
         {
-            using (_defaultConn)
-            {
-                return _defaultConn.Query<T>(sql, parameter).FirstOrDefault();
-            }
+            using var _defaultConn = new SqlConnection(_connectionConfig.Default);
+            return _defaultConn.Query<T>(sql, parameter).FirstOrDefault();
         }
 
         /// <summary>
@@ -39,10 +41,8 @@ namespace DbLogic
         /// <returns></returns>
         public IEnumerable<T> Query<T>(string sql, IDictionary<string, object> parameter)
         {
-            using (_defaultConn)
-            {
-                return _defaultConn.Query<T>(sql, parameter);
-            }
+            using var _defaultConn = new SqlConnection(_connectionConfig.Default);
+            return _defaultConn.Query<T>(sql, parameter);
         }
 
         /// <summary>
@@ -56,22 +56,20 @@ namespace DbLogic
             var dbTime = GetDbTime();
             parameter.Add("DbTime", dbTime);
 
-            using (_defaultConn)
+            using var _defaultConn = new SqlConnection(_connectionConfig.Default);
+            _defaultConn.Open();
+            using var trans = _defaultConn.BeginTransaction();
+            var result = _defaultConn.Execute(sql, parameter, transaction: trans);
+
+            try
             {
-                using var trans = _defaultConn.BeginTransaction();
-                var result = _defaultConn.Execute(sql, parameter);
-
-                try
-                {
-                    trans.Commit();
-                    return result;
-                }
-                catch
-                {
-                    trans.Rollback();
-                    throw;
-                }
-
+                trans.Commit();
+                return result;
+            }
+            catch
+            {
+                trans.Rollback();
+                throw;
             }
 
         }

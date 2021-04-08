@@ -13,6 +13,12 @@ namespace DbLogic.Blog
         public BlogArticle GetFirstArticle(int id);
 
         /// <summary>
+        /// 取得所有文章
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<BlogArticle> GetAllArticleList();
+
+        /// <summary>
         /// 取得文章列表
         /// </summary>
         /// <param name="page"></param>

@@ -32,6 +32,17 @@ namespace DbLogic.Blog
         }
 
         /// <summary>
+        /// 取得所有文章
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<BlogArticle> GetAllArticleList()
+        {
+            var sql = "select * from BlogArticle";
+            var result = _dataAccess.Query<BlogArticle>(sql, null);
+            return result;
+        }
+
+        /// <summary>
         /// 取得文章列表
         /// </summary>
         /// <param name="page"></param>
@@ -102,7 +113,7 @@ namespace DbLogic.Blog
                 { "Title",model.Title},
                 { "FilePath",model.FilePath},
                 { "Type",model.Type},
-                { "CreateTime",_dataAccess.GetDbTime()}
+                { "CreateTime",model.CreateTime}
             };
 
             _dataAccess.Excute(sql, parameter);

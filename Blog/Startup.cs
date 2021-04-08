@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Model.Appsettings;
 using Service.Blog;
 using Service.Blog.Interface;
 using System.Data;
@@ -28,14 +29,17 @@ namespace Blog
         {
             //每次Call Method都注入一個新的
             //services.AddTransient
+
             //每個LifeCycle注入一個新的
             //services.AddScoped   
+
             //只會在站台啟動時注入一個新的
             //services.AddSingleton
+            services.AddTransient<IDataAccess, DataAccess>();
+            services.AddScoped<IBlogDAL, BlogDAL>();
             services.AddScoped<IBlogArticleService, BlogArticleService>();
-            services.AddScoped<IDataAccess, DataAccess>();
-            services.AddTransient<IBlogDAL, BlogDAL>();
-            services.AddTransient<IDbConnection>(db => new SqlConnection(Configuration.GetConnectionString("DefaultConnectionString")));
+            services.Configure<ConnectionConfig>(Configuration.GetSection("ConnectionStrings"));
+
 
             services.AddControllers();
 

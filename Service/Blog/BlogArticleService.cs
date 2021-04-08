@@ -71,35 +71,32 @@ namespace Service.Blog
         /// </summary>
         public void SynchronizeArticle()
         {
-            //var contentRootPath = _hostingEnvironment.ContentRootPath;
-            //var dirPath = Path.Combine(contentRootPath, "AppData");
-            //var allFiles = GetAllFiles(dirPath);
+            var contentRootPath = _hostingEnvironment.ContentRootPath;
+            var dirPath = Path.Combine(contentRootPath, "AppData");
+            var allFiles = GetAllFiles(dirPath).Where(x => Path.GetExtension(x) == ".md");
 
-            //var allDbArticals = _blogDbContext.BlogArticles.ToList();
+            var allDbArticals = _blogDAL.GetAllArticleList().ToList();
 
-            //foreach (var filePath in allFiles)
-            //{
-            //    var title = Path.GetFileNameWithoutExtension(filePath);
-            //    if (title.StartsWith("#"))
-            //        title = title.Substring(1, title.Length - 1).Trim();
+            foreach (var filePath in allFiles)
+            {
+                var title = Path.GetFileNameWithoutExtension(filePath);
+                if (title.StartsWith("#"))
+                    title = title.Substring(1, title.Length - 1).Trim();
 
-            //    if (allDbArticals.Any(x => x.Title == title))
-            //        continue;
+                if (allDbArticals.Any(x => x.Title == title))
+                    continue;
 
-            //    var relativePath = filePath.Replace(contentRootPath, "").TrimStart('\\');
-            //    var pathSplit = relativePath.Split('\\');
-            //    _blogDbContext.BlogArticles.Add(new BlogArticle
-            //    {
-            //        Title = title,
-            //        Type = pathSplit[1],
-            //        FilePath = relativePath,
-            //        CreateTime = new DateTime(Convert.ToInt32(pathSplit[2]), Convert.ToInt32(pathSplit[3]), Convert.ToInt32(pathSplit[4])),
-            //        IsShow = true
-            //    });
-            //}
-
-            //_blogDbContext.SaveChanges();
-
+                var relativePath = filePath.Replace(contentRootPath, "").TrimStart('\\');
+                var pathSplit = relativePath.Split('\\');
+                _blogDAL.InsertArticle(new BlogArticle
+                {
+                    Title = title,
+                    Type = pathSplit[1],
+                    FilePath = relativePath,
+                    CreateTime = new DateTime(Convert.ToInt32(pathSplit[2]), Convert.ToInt32(pathSplit[3]), Convert.ToInt32(pathSplit[4])),
+                    IsShow = true
+                });
+            }
         }
 
         /// <summary>
