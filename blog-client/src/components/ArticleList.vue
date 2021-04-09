@@ -35,7 +35,7 @@ export default {
   mounted() {
     this.$http
       .get(
-        `https://bu9note.azurewebsites.net/api/blog/GetArticleList?type=${this.articleType}&page=1&pagesize=20`
+        `${process.env.VUE_APP_BASEAPIURL}/blog/GetArticleList?type=${this.articleType}&page=1&pagesize=20`
       )
       .then((result) => {
         this.articleList = result.data;

@@ -24,7 +24,7 @@ export default {
   mounted() {
     this.$http
       .get(
-        `https://bu9note.azurewebsites.net/api/blog/getarticle?id=${this.$route.params.id}`
+        `${process.env.VUE_APP_BASEAPIURL}/blog/getarticle?id=${this.$route.params.id}`
       )
       .then((result) => {
         this.articleDisplay = result.data;
