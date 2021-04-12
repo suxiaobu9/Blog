@@ -16,7 +16,7 @@
 - 選擇專案
   ![SelectProject](.\AzureDevOpsAutoDeployImage\SelectProject.jpg)
 
-- 選擇專案架構，這邊事先準備好的專案是.net 5 的，所以選擇 ASP.NET Core(.Net Framework)
+- 選擇專案架構，這邊事先準備好的專案是 .net 5 的，所以選擇 ASP .NET Core(.Net Framework)
   ![ChooseFramework](.\AzureDevOpsAutoDeployImage\ChooseFramework.jpg)
 
   ![ShowAssistant](.\AzureDevOpsAutoDeployImage\ShowAssistant.jpg)
