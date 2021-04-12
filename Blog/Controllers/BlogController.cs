@@ -23,7 +23,7 @@ namespace Blog.Controllers
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("GetArticleList")]
-        public ActionResult Get(ArticleType type, int page, int pageSize)
+        public IActionResult Get(ArticleType type, int page, int pageSize)
         {
             var result = (type == ArticleType.All ?
                         _blogArticleService.GetArticleList(page, pageSize) :
@@ -43,10 +43,22 @@ namespace Blog.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("GetArticle")]
-        public ActionResult Get(int id)
+        public IActionResult Get(int id)
         {
 
             return Ok(_blogArticleService.GetArticleDetail(id));
+        }
+
+        /// <summary>
+        /// 取得圖片
+        /// </summary>
+        /// <param name="imagePath"></param>
+        /// <returns></returns>
+        [HttpGet("GetImage")]
+        public IActionResult Get(string imagePath)
+        {
+            var image = _blogArticleService.GetImage(imagePath);
+            return File(image, "image/jpeg");
         }
 
         /// <summary>
@@ -54,7 +66,7 @@ namespace Blog.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPut]
-        public ActionResult Put()
+        public IActionResult Put()
         {
             _blogArticleService.SynchronizeArticle();
             return Ok();

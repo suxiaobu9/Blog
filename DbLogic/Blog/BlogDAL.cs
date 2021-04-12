@@ -57,8 +57,8 @@ namespace DbLogic.Blog
                         fetch next @pageSize rows only";
             var parameter = new Dictionary<string, object>
             {
-                { "page",page},
-                { "pageSize",pageSize}
+                { "page",(page-1) * pageSize},
+                { "pageSize", pageSize}
             };
             var result = _dataAccess.Query<BlogArticle>(sql, parameter);
             return result;
@@ -82,8 +82,8 @@ namespace DbLogic.Blog
             var parameter = new Dictionary<string, object>
             {
                 { "type",type.ToString()},
-                { "page",page},
-                { "pageSize",pageSize}
+                { "page",(page-1) * pageSize},
+                { "pageSize", pageSize}
             };
 
             var result = _dataAccess.Query<BlogArticle>(sql, parameter);

@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "===== local 環境 =====":"npm run serve",
+    "===== local 環境 =====": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "===== production 環境 =====":"npm run build:prod",
+    "===== production 環境 =====": "npm run build:prod",
     "serve:prod": "vue-cli-service serve --mode prod",
     "build:prod": "vue-cli-service build --mode prod",
-    
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -18,6 +17,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
+    "jquery": "^3.6.0",
     "markdown-it-vue": "^1.1.6",
     "vue": "^2.6.12",
     "vue-axios": "^3.2.4",
