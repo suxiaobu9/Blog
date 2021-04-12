@@ -65,7 +65,12 @@ namespace Service.Blog
         public FileStream GetImage(string imageRelativePath)
         {
             var imagePath = Path.Combine(_hostingEnvironment.ContentRootPath, imageRelativePath);
+
+            if (!imagePath.ToLower().StartsWith(Path.Combine(_hostingEnvironment.ContentRootPath, "AppData").ToLower()))
+                return null;
+
             var image = File.OpenRead(imagePath);
+
             return image;
         }
 
