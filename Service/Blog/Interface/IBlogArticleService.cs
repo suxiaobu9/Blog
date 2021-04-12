@@ -2,6 +2,7 @@
 using Model.Blog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Service.Blog.Interface
@@ -36,5 +37,12 @@ namespace Service.Blog.Interface
         /// 同步資料進sqlite
         /// </summary>
         public void SynchronizeArticle();
+
+        /// <summary>
+        /// 取得圖片
+        /// </summary>
+        /// <param name="imageRelativePath"></param>
+        /// <returns></returns>
+        public FileStream GetImage(string imageRelativePath);
     }
 }

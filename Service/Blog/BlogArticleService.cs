@@ -1,5 +1,4 @@
-﻿using DbLogic;
-using DbLogic.Blog;
+﻿using DbLogic.Blog;
 using Microsoft.AspNetCore.Hosting;
 using Model;
 using Model.Blog;
@@ -8,7 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace Service.Blog
 {
@@ -31,14 +31,47 @@ namespace Service.Blog
         /// <returns></returns>
         public ArticleModel GetArticleDetail(int id)
         {
+            var imageUrl = @"/Blog/GetImage";
             var blogArtical = _blogDAL.GetFirstArticle(id);
+            var dir = Path.GetDirectoryName(blogArtical.FilePath);
+            var mdContent = File.ReadAllText(Path.Combine(_hostingEnvironment.ContentRootPath, blogArtical.FilePath))
+                            .Split("\r\n")
+                            .Select(x =>
+                            {
+                                if (!Regex.IsMatch(x, @"\!\[\w+\]\(\.\\\w+\w+\\\w+\.jpg\)"))
+                                    return x;
+
+                                var start = x.IndexOf('(') + 2;
+                                var length = x.IndexOf(')') - start;
+                                var path = x.Substring(start, length);
+
+                                return x.Replace($".{path}", $"{imageUrl}?imagePath={HttpUtility.UrlEncode(dir + path)}");
+
+                            }).ToList();
 
             return new ArticleModel
             {
                 Title = blogArtical.Title,
                 CreateTime = blogArtical.CreateTime.ToString("yyyy/MM/dd"),
-                MdContent = File.ReadAllText(Path.Combine(_hostingEnvironment.ContentRootPath, blogArtical.FilePath))
+                MdContent = string.Join("\r\n", mdContent)
             };
+        }
+
+        /// <summary>
+        /// 取得圖片
+        /// </summary>
+        /// <param name="imageRelativePath"></param>
+        /// <returns></returns>
+        public FileStream GetImage(string imageRelativePath)
+        {
+            var imagePath = Path.Combine(_hostingEnvironment.ContentRootPath, imageRelativePath);
+
+            if (!imagePath.ToLower().StartsWith(Path.Combine(_hostingEnvironment.ContentRootPath, "AppData").ToLower()))
+                return null;
+
+            var image = File.OpenRead(imagePath);
+
+            return image;
         }
 
         /// <summary>
