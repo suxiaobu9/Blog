@@ -1,5 +1,3 @@
-# Azure DevOps Auto Deploy
-
 ## 環境
 
 1. .net 5 MVC
